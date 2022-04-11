@@ -1,4 +1,18 @@
 #!/bin/bash
+#-----------------------firewall開port----------------------------#
+
+if [ $? -eq 0 ]
+  then
+    echo "firewalld is running"
+else
+    echo "firewalld is not running... let's enable it.."
+    systemctl start firewalld
+    firewall-cmd --add-port=3366/tcp --permanent
+    firewall-cmd --add-port=8080/tcp --permanent
+    firewall-cmd --reload
+    firewall-cmd --list-all
+    setenforce 0
+fi
 
 #------------------------安裝交互自動工具----------------------------#
 yum install tcl expect docker-ce git -y
@@ -18,8 +32,22 @@ LOCAL_IP=`ifconfig | egrep -o "\<([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-1][0-9]|22[0-
 #-----------------------啟動docker-compose-------------------------#
 docker-compose up -d
 
-echo "watting for db setup...."
+echo "watting for db setup ."
+/usr/bin/sleep 1
+echo "watting for db setup .."
+/usr/bin/sleep 1
+echo "watting for db setup ..."
+/usr/bin/sleep 1
+echo "watting for db setup ...."
+/usr/bin/sleep 1
+echo "watting for db setup ....."
 /usr/bin/sleep 25
+
+echo "check web 8080 port ."
+echo "check web 8080 port .."
+echo "check web 8080 port ..."
+echo "check web 8080 port ...."
+curl http://$IP:8080
 
 /usr/bin/expect <<EOF
     spawn mysql -uroot -p -h ${LOCAL_IP} -P ${mysql_port}
