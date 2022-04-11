@@ -19,7 +19,7 @@ mysql_port=`cat .env | grep mysql_port | awk -F '=' '{print $2}'`
 docker-compose up -d
 
 echo "watting for db setup...."
-/usr/bin/sleep 15
+/usr/bin/sleep 25
 
 /usr/bin/expect <<EOF
     spawn mysql -uroot -p -h 192.168.0.11 -P ${mysql_port}
