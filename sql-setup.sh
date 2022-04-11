@@ -13,7 +13,7 @@ MYSQL_ROOT_PASSWORD=`cat .env | grep MYSQL_ROOT_PASSWORD | awk -F '=' '{print $2
 MYSQL_USER=`cat .env | grep MYSQL_USER | awk -F '=' '{print $2}'`
 MYSQL_PASSWORDD=`cat .env | grep MYSQL_PASSWORD | awk -F '=' '{print $2}'`
 mysql_port=`cat .env | grep mysql_port | awk -F '=' '{print $2}'`
-LOCAL_IP=`ifconfig | egrep -o "\<([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-1][0-9]|22[0-3])\>.(\<([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\>\.){2}\<([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-4])\>" |grep 192
+LOCAL_IP=`ifconfig | egrep -o "\<([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-1][0-9]|22[0-3])\>.(\<([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\>\.){2}\<([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-4])\>" |grep 192`
 
 #-----------------------啟動docker-compose-------------------------#
 docker-compose up -d
