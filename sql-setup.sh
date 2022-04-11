@@ -15,7 +15,7 @@ else
 fi
 
 #------------------------安裝交互自動工具----------------------------#
-yum install tcl expect docker-ce git mysql ifconfig -y
+yum install tcl expect docker-ce git mysql net-tools -y
 
 
 #------------------------git clone-----------------------------------#
