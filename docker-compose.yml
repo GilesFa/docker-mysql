@@ -1,0 +1,33 @@
+version: '3'
+services:
+  db:
+    image: docker.io/mysql:latest
+    container_name: ${mysql_container_name}
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: Asia/Taipei
+      character-set-server: utf8mb4
+      collation-server: utf8mb4_unicode_ci
+    volumes:
+      - "./docker_data/mysqldb:/var/lib/mysql:rw"
+      - "./docker_config/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf:ro"
+    ports:
+      - '${mysql_port}:3306'
+    expose:
+      - '3306'
+    command: mysqld --sql_mode="" --character-set-server=utf8 --collation-server=utf8_slovenian_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+
+  phpmyadmin:
+    image: docker.io/phpmyadmin/phpmyadmin:latest
+    container_name: ${phpmyadmin_container_name}
+    restart: always
+    environment:
+      PMA_HOST: ${mysql_container_name}
+    ports:
+      - "${myadmin_port}:80"
+    links:
+      - db
